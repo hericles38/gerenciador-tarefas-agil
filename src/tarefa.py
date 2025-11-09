@@ -57,6 +57,23 @@ class Tarefa:
             return True
         return False
 
+    # --- MÉTODO ADICIONADO PARA CORRIGIR O ATTRIBUTE ERROR ---
+    def atualizar_prioridade(self, nova_prioridade):
+        """
+        Atualiza a prioridade da tarefa.
+
+        Args:
+            nova_prioridade (str): Nova prioridade
+
+        Returns:
+            bool: True se atualizado com sucesso
+        """
+        if nova_prioridade in self.PRIORIDADES_VALIDAS:
+            self.prioridade = nova_prioridade
+            return True
+        return False
+    # ---------------------------------------------------------
+
     def to_dict(self):
         """
         Converte a tarefa para dicionário (para salvar em JSON).
@@ -70,7 +87,7 @@ class Tarefa:
             "descricao": self.descricao,
             "prioridade": self.prioridade,
             "status": self.status,
-            "data_criacao": self.data_criacao,  # <-- VÍRGULA ADICIONADA AQUI
+            "data_criacao": self.data_criacao,
             "data_conclusao": self.data_conclusao
         }
 
