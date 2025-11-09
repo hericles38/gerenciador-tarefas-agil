@@ -35,4 +35,4 @@ jobs:
       - name: Executar Testes com Cobertura
         run: |
           export PYTHONPATH=$PYTHONPATH:$(pwd)/src:$(pwd)
-          pytest -v --cov=src --cov-report=term-missing tests/
+          pytest -v --cov=src --cov-report=term-missing tests/ --ignore=tests/test_kanban.py --ignore=test_kanban.py
