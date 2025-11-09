@@ -1,6 +1,15 @@
+"""
+Módulo que define a classe Tarefa.
+Representa uma tarefa individual no sistema de gerenciamento.
+"""
 from datetime import datetime
 
+
 class Tarefa:
+    """
+    Classe que representa uma tarefa no sistema Kanban.
+    """
+
     PRIORIDADES_VALIDAS = ["Alta", "Média", "Baixa"]
     STATUS_VALIDOS = ["A Fazer", "Em Progresso", "Concluído"]
 
