@@ -37,7 +37,7 @@ jobs:
    # 4. Executar testes com cobertura
     - name: Executar testes
       run: |
-        export PYTHONPATH=$PYTHONPATH:$(pwd)
+        export PYTHONPATH=$PYTHONPATH:$(pwd)/src:$(pwd)
         pytest -v --cov=src --cov-report=term-missing
     
     # 5. Verificar qualidade do código
