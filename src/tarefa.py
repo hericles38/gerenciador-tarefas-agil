@@ -37,6 +37,7 @@ class Tarefa:
         self.prioridade = prioridade if prioridade in self.PRIORIDADES_VALIDAS else "Média"
         self.status = "To Do"
         self.data_criacao = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.data_conclusao = None
     
     def atualizar_status(self, novo_status):
         """
@@ -53,20 +54,14 @@ class Tarefa:
             return True
         return False
     
-    def atualizar_prioridade(self, nova_prioridade):
-        """
-        Atualiza a prioridade da tarefa.
-        
-        Args:
-            nova_prioridade (str): Nova prioridade
-        
-        Returns:
-            bool: True se atualizado com sucesso
-        """
-        if nova_prioridade in self.PRIORIDADES_VALIDAS:
-            self.prioridade = nova_prioridade
-            return True
-        return False
+   def atualizar_status(self, novo_status):
+    if novo_status in self.STATUS_VALIDOS:
+        self.status = novo_status
+        # Se marcar como concluído, registra data
+        if novo_status == "Done" and self.data_conclusao is None:
+            self.data_conclusao = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        return True
+    return False
     
     def to_dict(self):
         """
@@ -82,6 +77,7 @@ class Tarefa:
             "prioridade": self.prioridade,
             "status": self.status,
             "data_criacao": self.data_criacao
+            "data_conclusao": self.data_conclusao
         }
     
     @classmethod
@@ -103,6 +99,7 @@ class Tarefa:
         )
         tarefa.status = dados.get("status", "To Do")
         tarefa.data_criacao = dados.get("data_criacao", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        tarefa.data_conclusao = dados.get("data_conclusao")
         return tarefa
     
     def __str__(self):
