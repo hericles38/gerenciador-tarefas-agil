@@ -178,9 +178,9 @@ class GerenciadorTarefas:
         """
         total = len(self.tarefas)
         por_status = {
-            "To Do": len([t for t in self.tarefas if t.status == "To Do"]),
-            "In Progress": len([t for t in self.tarefas if t.status == "In Progress"]),
-            "Done": len([t for t in self.tarefas if t.status == "Done"])
+           "A Fazer": len([t for t in self.tarefas if t.status == "A Fazer"]),
+           "Em Progresso": len([t for t in self.tarefas if t.status == "Em Progresso"]),
+           "Concluído": len([t for t in self.tarefas if t.status == "Concluído"])
         }
         por_prioridade = {
             "Alta": len([t for t in self.tarefas if t.prioridade == "Alta"]),
