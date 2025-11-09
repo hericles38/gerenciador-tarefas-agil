@@ -9,7 +9,7 @@ import sys
 # Adiciona o diretório src ao path para importar os módulos
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
-from tarefa import Tarefa
+from src.tarefa import Tarefa
 
 
 class TestCriacaoTarefa:
