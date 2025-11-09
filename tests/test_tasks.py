@@ -2,7 +2,7 @@
 Testes automatizados para o Sistema de Gerenciamento de Tarefas
 Arquivo: tests/test_tasks.py
 """
-import pytest
+
 
 class TestTaskBasic:
     """Testes básicos de tarefas"""
@@ -40,6 +40,7 @@ class TestTaskBasic:
         assert "Média" in prioridades
         assert "Baixa" in prioridades
 
+
 class TestTaskValidation:
     """Testes de validação"""
 
@@ -57,6 +58,7 @@ class TestTaskValidation:
         status_padrao = tarefa.get("status", "A Fazer")
 
         assert status_padrao == "A Fazer"
+
 
 class TestTaskOperations:
     """Testes de operações CRUD"""
@@ -101,6 +103,7 @@ class TestTaskOperations:
         a_fazer = [t for t in tarefas if t["status"] == "A Fazer"]
 
         assert len(a_fazer) == 2
+
 
 class TestIntegration:
     """Testes de integração"""
