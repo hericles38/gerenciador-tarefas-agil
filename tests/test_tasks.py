@@ -124,7 +124,6 @@ class TestIntegration:
         # Iniciar
         tarefa["status"] = "Em Progresso"
         assert tarefa["status"] == "Em Progresso"
-        
         # Concluir
         tarefa["status"] = "Concluído"
         assert tarefa["status"] == "Concluído"
