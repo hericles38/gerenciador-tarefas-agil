@@ -4,8 +4,7 @@ Implementa operações CRUD (Create, Read, Update, Delete).
 """
 import json
 import os
-from tarefa import Tarefa
-
+from src.tarefa import Tarefa
 
 class GerenciadorTarefas:
     """
