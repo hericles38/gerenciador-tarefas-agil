@@ -39,7 +39,7 @@ class TestCriarTarefa:
         assert tarefa.titulo == "Tarefa Teste"
         assert tarefa.status == "To Do"
         assert len(gerenciador_limpo.tarefas) == 1
-    
+        
     def test_criar_tarefa_com_descricao(self, gerenciador_limpo):
         """Testa criação de tarefa com descrição."""
         tarefa = gerenciador_limpo.criar_tarefa(
@@ -51,7 +51,7 @@ class TestCriarTarefa:
         assert tarefa.titulo == "Tarefa Completa"
         assert tarefa.descricao == "Descrição detalhada"
         assert tarefa.prioridade == "Alta"
-    
+        
     def test_criar_tarefa_incrementa_id(self, gerenciador_limpo):
         """Testa se o ID é incrementado automaticamente."""
         t1 = gerenciador_limpo.criar_tarefa("Tarefa 1")
@@ -61,14 +61,14 @@ class TestCriarTarefa:
         assert t1.id == 1
         assert t2.id == 2
         assert t3.id == 3
-    
+        
     def test_criar_tarefa_sem_titulo_falha(self, gerenciador_limpo):
         """Testa que criar tarefa sem título lança exceção."""
         with pytest.raises(ValueError):
             gerenciador_limpo.criar_tarefa("")
         
         with pytest.raises(ValueError):
-            gerenciador_limpo.criar_tarefa("   ")
+            gerenciador_limpo.criar_tarefa("    ")
 
 
 class TestListarTarefas:
@@ -78,7 +78,7 @@ class TestListarTarefas:
         """Testa listagem quando não há tarefas."""
         tarefas = gerenciador_limpo.listar_tarefas()
         assert len(tarefas) == 0
-    
+        
     def test_listar_todas_tarefas(self, gerenciador_limpo):
         """Testa listagem de todas as tarefas."""
         gerenciador_limpo.criar_tarefa("Tarefa 1")
@@ -87,7 +87,7 @@ class TestListarTarefas:
         
         tarefas = gerenciador_limpo.listar_tarefas()
         assert len(tarefas) == 3
-    
+        
     def test_filtrar_por_status(self, gerenciador_limpo):
         """Testa filtro por status."""
         gerenciador_limpo.criar_tarefa("Tarefa 1")
@@ -99,7 +99,7 @@ class TestListarTarefas:
         
         assert len(tarefas_todo) == 1
         assert len(tarefas_progress) == 1
-    
+        
     def test_filtrar_por_prioridade(self, gerenciador_limpo):
         """Testa filtro por prioridade."""
         gerenciador_limpo.criar_tarefa("Tarefa Alta", prioridade="Alta")
@@ -111,7 +111,7 @@ class TestListarTarefas:
         
         assert len(tarefas_alta) == 1
         assert len(tarefas_media) == 1
-    
+        
     def test_filtrar_status_e_prioridade(self, gerenciador_limpo):
         """Testa filtro combinado de status e prioridade."""
         gerenciador_limpo.criar_tarefa("T1", prioridade="Alta")
@@ -138,7 +138,7 @@ class TestBuscarTarefa:
         assert tarefa is not None
         assert tarefa.id == 1
         assert tarefa.titulo == "Tarefa Teste"
-    
+        
     def test_buscar_tarefa_inexistente(self, gerenciador_limpo):
         """Testa busca de tarefa que não existe."""
         tarefa = gerenciador_limpo.buscar_tarefa(999)
@@ -156,12 +156,12 @@ class TestAtualizarTarefa:
         assert resultado is True
         tarefa = gerenciador_limpo.buscar_tarefa(1)
         assert tarefa.status == "In Progress"
-    
+        
     def test_atualizar_status_tarefa_inexistente(self, gerenciador_limpo):
         """Testa atualização de status de tarefa inexistente."""
         resultado = gerenciador_limpo.atualizar_status(999, "Done")
         assert resultado is False
-    
+        
     def test_atualizar_prioridade_sucesso(self, gerenciador_limpo):
         """Testa atualização de prioridade com sucesso."""
         gerenciador_limpo.criar_tarefa("Tarefa Teste")
@@ -170,7 +170,7 @@ class TestAtualizarTarefa:
         assert resultado is True
         tarefa = gerenciador_limpo.buscar_tarefa(1)
         assert tarefa.prioridade == "Alta"
-    
+        
     def test_atualizar_status_para_done_registra_data(self, gerenciador_limpo):
         """Testa que ao marcar como Done, registra data de conclusão."""
         gerenciador_limpo.criar_tarefa("Tarefa Teste")
@@ -190,12 +190,12 @@ class TestDeletarTarefa:
         
         assert resultado is True
         assert len(gerenciador_limpo.tarefas) == 0
-    
+        
     def test_deletar_tarefa_inexistente(self, gerenciador_limpo):
         """Testa deleção de tarefa inexistente."""
         resultado = gerenciador_limpo.deletar_tarefa(999)
         assert resultado is False
-    
+        
     def test_deletar_nao_afeta_outras_tarefas(self, gerenciador_limpo):
         """Testa que deletar uma tarefa não afeta outras."""
         gerenciador_limpo.criar_tarefa("Tarefa 1")
@@ -225,7 +225,7 @@ class TestPersistencia:
         assert len(gerenciador2.tarefas) == 2
         assert gerenciador2.tarefas[0].titulo == "Tarefa 1"
         assert gerenciador2.tarefas[1].prioridade == "Baixa"
-    
+        
     def test_proximo_id_persistido(self, gerenciador_limpo):
         """Testa que o próximo ID é persistido corretamente."""
         gerenciador_limpo.criar_tarefa("Tarefa 1")
@@ -248,7 +248,7 @@ class TestEstatisticas:
         assert stats["por_status"]["To Do"] == 0
         assert stats["por_status"]["In Progress"] == 0
         assert stats["por_status"]["Done"] == 0
-    
+        
     def test_estatisticas_completas(self, gerenciador_limpo):
         """Testa estatísticas com várias tarefas."""
         gerenciador_limpo.criar_tarefa("T1", prioridade="Alta")
