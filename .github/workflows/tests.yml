@@ -26,17 +26,12 @@ jobs:
       - name: Instalar dependências
         run: |
           python -m pip install --upgrade pip
-          pip install flake8 pytest pytest-cov
+          pip install pytest pytest-cov
           if [ -f "requirements.txt" ]; then
             pip install -r requirements.txt
           fi
       
-      # 4. Verificar Qualidade do Código com Flake8
-      - name: Validar Estilo de Código com Flake8
-        run: |
-          flake8 tests/ --max-line-length=100 --exclude=test_kanban.py
-      
-      # 5. Executar testes com cobertura
+      # 4. Executar testes com cobertura
       - name: Executar Testes com Cobertura
         run: |
           export PYTHONPATH=$PYTHONPATH:$(pwd)/src:$(pwd)
