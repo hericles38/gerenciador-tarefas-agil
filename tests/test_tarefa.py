@@ -26,7 +26,7 @@ class TestCriacaoTarefa:
         assert tarefa.descricao == ""
         assert tarefa.data_criacao is not None
         assert tarefa.data_conclusao is None
-    
+        
     def test_criar_tarefa_completa(self):
         """Testa criação de tarefa com todos os campos."""
         tarefa = Tarefa(
@@ -40,7 +40,7 @@ class TestCriacaoTarefa:
         assert tarefa.titulo == "Tarefa Completa"
         assert tarefa.descricao == "Descrição detalhada da tarefa"
         assert tarefa.prioridade == "Alta"
-    
+        
     def test_tarefa_inicia_com_status_to_do(self):
         """Testa que toda tarefa nova começa com status 'To Do'."""
         tarefa = Tarefa(1, "Teste")
@@ -57,7 +57,7 @@ class TestAtualizarStatus:
         
         assert resultado is True
         assert tarefa.status == "In Progress"
-    
+        
     def test_atualizar_para_done(self):
         """Testa atualização de status para 'Done'."""
         tarefa = Tarefa(1, "Tarefa Teste")
@@ -66,7 +66,7 @@ class TestAtualizarStatus:
         assert resultado is True
         assert tarefa.status == "Done"
         assert tarefa.data_conclusao is not None
-    
+        
     def test_atualizar_para_status_invalido(self):
         """Testa que status inválido não é aceito."""
         tarefa = Tarefa(1, "Tarefa Teste")
@@ -74,7 +74,7 @@ class TestAtualizarStatus:
         
         assert resultado is False
         assert tarefa.status == "To Do"  # Permanece no status original
-    
+        
     def test_data_conclusao_apenas_quando_done(self):
         """Testa que data_conclusao só é preenchida quando status é 'Done'."""
         tarefa = Tarefa(1, "Tarefa Teste")
@@ -84,7 +84,7 @@ class TestAtualizarStatus:
         
         tarefa.atualizar_status("Done")
         assert tarefa.data_conclusao is not None
-    
+        
     def test_todos_status_validos(self):
         """Testa que todos os status válidos funcionam."""
         tarefa = Tarefa(1, "Tarefa Teste")
@@ -104,7 +104,7 @@ class TestAtualizarPrioridade:
         
         assert resultado is True
         assert tarefa.prioridade == "Alta"
-    
+        
     def test_atualizar_para_baixa(self):
         """Testa atualização de prioridade para 'Baixa'."""
         tarefa = Tarefa(1, "Tarefa Teste")
@@ -112,7 +112,7 @@ class TestAtualizarPrioridade:
         
         assert resultado is True
         assert tarefa.prioridade == "Baixa"
-    
+        
     def test_atualizar_para_prioridade_invalida(self):
         """Testa que prioridade inválida não é aceita."""
         tarefa = Tarefa(1, "Tarefa Teste", prioridade="Média")
@@ -120,7 +120,7 @@ class TestAtualizarPrioridade:
         
         assert resultado is False
         assert tarefa.prioridade == "Média"  # Permanece na prioridade original
-    
+        
     def test_todas_prioridades_validas(self):
         """Testa que todas as prioridades válidas funcionam."""
         tarefa = Tarefa(1, "Tarefa Teste")
@@ -146,7 +146,7 @@ class TestConversaoDicionario:
         assert dicionario["prioridade"] == "Alta"
         assert "data_criacao" in dicionario
         assert "data_conclusao" in dicionario
-    
+        
     def test_from_dict(self):
         """Testa criação de tarefa a partir de dicionário."""
         dados = {
@@ -167,7 +167,7 @@ class TestConversaoDicionario:
         assert tarefa.status == "In Progress"
         assert tarefa.prioridade == "Baixa"
         assert tarefa.data_criacao == "2024-01-01 10:00:00"
-    
+        
     def test_ciclo_completo_dict(self):
         """Testa conversão to_dict -> from_dict mantém dados."""
         tarefa_original = Tarefa(5, "Teste Ciclo", "Descrição", "Alta")
@@ -195,7 +195,7 @@ class TestRepresentacaoString:
         assert "Tarefa Teste" in string
         assert "To Do" in string
         assert "Alta" in string
-    
+        
     def test_repr_representation(self):
         """Testa método __repr__."""
         tarefa = Tarefa(1, "Tarefa Teste")
@@ -218,12 +218,12 @@ class TestValidacaoDados:
         assert t1.id == 1
         assert t2.id == 100
         assert t3.id == 999
-    
-    def test_titulo_vazio_permitido_na_classe(self):
+        
+    def test_titulo_vazio_permitido_nao_classe(self):
         """Testa que a classe Tarefa permite título vazio (validação é no gerenciador)."""
         tarefa = Tarefa(1, "")
         assert tarefa.titulo == ""
-    
+        
     def test_descricao_opcional(self):
         """Testa que descrição é opcional."""
         tarefa = Tarefa(1, "Teste")
