@@ -113,15 +113,20 @@ pytest --cov=src tests/
 
 ### Mudança Implementada: Sistema de Prioridades
 
-**Data:** [Será preenchida quando implementar]
+**Data:** [09/11/2024]
 
-**Justificativa:** Durante o desenvolvimento, identificamos que o cliente necessitava de um sistema de priorização de tarefas para melhor gerenciar atividades críticas da logística. Esta mudança foi acordada com o Product Owner e implementada sem impacto no prazo de entrega.
+**Justificativa:** Durante o desenvolvimento, identificamos através de reuniões com o cliente que equipes de logística frequentemente precisam diferenciar tarefas urgentes de atividades rotineiras. A ausência de um sistema de priorização estava gerando conflitos na ordem de execução das atividades. O Product Owner aprovou a implementação do sistema de prioridades (Alta, Média, Baixa) sem impacto no prazo de entrega do MVP.
 
-**Impacto:**
-- Adição do campo "prioridade" no modelo de Tarefa
-- Novos testes unitários para validação
-- Atualização da interface de criação de tarefas
-- Filtro adicional por prioridade
+**Impacto no Projeto:**
+- Adição do atributo "prioridade" no modelo de dados Tarefa
+- Implementação de 8 novos testes unitários específicos para prioridades
+- Atualização da interface de criação e listagem de tarefas
+- Novo filtro por prioridade no método listar_tarefas()
+- Documentação atualizada no README.md
+
+**Atualização no Kanban:**
+A tarefa "Implementar sistema de prioridades" foi adicionada ao quadro e movida para "Done" após conclusão dos testes.
+  
 
 ## 🧪 Controle de Qualidade
 
