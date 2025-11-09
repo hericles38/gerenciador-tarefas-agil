@@ -9,9 +9,8 @@ import sys
 # Adiciona o diretório src ao path para importar os módulos
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
-from src.gerenciador import ...
-   from src.tarefa import ...
-
+from src.gerenciador import GerenciadorTarefas
+from src.tarefa import Tarefa
 
 @pytest.fixture
 def gerenciador_limpo():
